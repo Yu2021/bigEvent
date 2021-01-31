@@ -23,13 +23,19 @@ $(function () {
     // 发起 ajax 请求
     axios.post('/my/updatepwd', $(this).serialize())
          .then(res => {
-            console.log(res)
+            // console.log(res)
             // 校验请求失败  
             if (res.status !== 0) {
               return layer.msg('修改密码失败!')
             }
             // 提示用户
             layer.msg('修改密码成功!')
+
+            // 跳转到登录页
+            window.parent.location.href = '../login.html'
+
+            // 原先 token 令牌清除掉
+            localStorage.removeItem('token')
          })
   })
 
