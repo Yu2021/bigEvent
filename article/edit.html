@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>我的项目</title>
+  <!-- 引入 cropper 插件的css文件 -->
+  <link rel="stylesheet" href="../assets/lib/cropper/cropper.css">
+  <!-- 引入 layui 插件的 css 文件 -->
+  <link rel="stylesheet" href="../assets/lib/layui/css/layui.css">
+  <!-- 引入自己的css文件 -->
+  <link rel="stylesheet" href="../assets/css/article.css">
+</head>
+<body>
+  <div class="layui-card">
+    <div class="layui-card-header">修改文章</div>
+    <div class="layui-card-body">
+      <!-- 发布表单 -->
+      <form class="layui-form publish-form"  lay-filter="edit-form" action="">
+        <!-- 文章标题 -->
+        <div class="layui-form-item">
+          <label class="layui-form-label">文章标题</label>
+          <div class="layui-input-block">
+            <input type="text" name="title" required  lay-verify="required" placeholder="请输入文章标题" autocomplete="off" class="layui-input">
+          </div>
+        </div>
+
+        <!-- 文章类别 -->
+        <div class="layui-form-item">
+          <label class="layui-form-label">文章类别</label>
+          <div class="layui-input-block">
+            <!-- select 下拉选择框的值, 就是我们选中那项 option 的 value属性值 -->
+            <select id="cate-sel" name="cate_id" lay-verify="required">
+              <option value="">请选择文章分类</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- 文章内容 -->
+        <div class="layui-form-item">
+          <label class="layui-form-label">文章内容</label>
+          <div class="layui-input-block">
+            <!-- 预留一个文本域, 用来渲染富文本编辑器 -->
+            <textarea name="content"></textarea>
+          </div>
+        </div>
+
+        <!-- 图片裁剪区 -->
+        <div class="layui-form-item">
+          <!-- 左侧的 label -->
+          <label class="layui-form-label">文章封面</label>
+          <!-- 选择封面区域 -->
+          <div class="layui-input-block cover-box">
+            <!-- 左侧裁剪区域 -->
+            <div class="cover-left">
+              <img id="image" src="/assets/images/sample2.jpg" alt="" />
+            </div>
+            <!-- 右侧预览区域和选择封面区域 -->
+            <div class="cover-right">
+              <!-- 预览的区域 -->
+              <div class="img-preview"></div>
+              <!-- 文件选择框 -->
+              <input type="file" id="file" accept="image/png,image/jpg,image/gif,image/jpeg" style="display: none;">
+              <!-- 选择封面按钮 -->
+              <button id="choose-btn" type="button" class="layui-btn layui-btn-danger">选择封面</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 提交按钮 -->
+        <div class="layui-form-item">
+          <div class="layui-input-block last-row">
+            <!-- lay-submit 控制按钮属性为提交按钮 -->
+            <button data-state="已发布" class="layui-btn" lay-submit lay-filter="formDemo">发布</button>
+            <button data-state="草稿" lay-submit class="layui-btn layui-btn-primary">存为草稿</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 引入 tinymce 插件文件 -->
+  <script src="../assets/lib/tinymce/tinymce.min.js"></script>
+  <!-- 引入 富文本编辑器的初始化方法 -->
+  <script src="../assets/lib/tinymce/tinymce_setup.js"></script>
+  <!-- 引入 jquery 文件 -->
+  <script src="../assets/lib/jquery.js"></script>
+
+  <!-- 引入 cropper 插件的 js 文件 -->
+  <script src="../assets/lib/cropper/Cropper.js"></script>
+  <script src="../assets/lib/cropper/jquery-cropper.js"></script>
+
+  <!-- 引入 layui 的 js 文件 -->
+  <script src="../assets/lib/layui/layui.all.js"></script>
+  <!-- 引入请求库 axios 的 js 文件 -->
+  <script src="../assets/lib/axios.js"></script>
+  <!-- 引入公共的请求设置文件 -->
+  <script src="../assets/js/commonAPI.js"></script>
+  <!-- 引入自己的文件 -->
+  <script src="../assets/js/article/edit.js"></script>
+</body>
+</html>

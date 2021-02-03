@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>我的项目</title>
+  <!-- 引入 layui 插件的 css 文件 -->
+  <link rel="stylesheet" href="../assets/lib/layui/css/layui.css">
+  <!-- 引入自己的css文件 -->
+  <link rel="stylesheet" href="../assets/css/article.css">
+</head>
+<body>
+  <div class="layui-card">
+    <div class="layui-card-header">文章列表</div>
+    <div class="layui-card-body">
+      <!-- 筛选区域 -->
+      <form class="layui-form" action="">
+        <!-- 文章分类 -->
+        <div class="layui-inline">
+          <div class="layui-input-inline">
+            <select id="cate-sel" name="cate_id" lay-verify="">
+              <option value="">所有分类</option>
+            </select>
+          </div>
+        </div>
+        <!-- 文章状态 -->
+        <div class="layui-inline">
+          <div class="layui-input-inline">
+            <select id="state" name="state" lay-verify="">
+              <option value="">所有的状态</option>
+              <option value="已发布">已发布</option>
+              <option value="草稿">草稿</option>
+            </select>
+          </div>
+        </div>
+        <!-- 筛选按钮 -->
+        <div class="layui-inline">
+          <div class="layui-input-inline">
+            <button class="layui-btn" lay-submit lay-filter="formDemo">筛选</button>
+          </div>
+        </div>
+      </form>
+
+      <!-- 表格区域 -->
+      <table class="layui-table list-table">
+        <colgroup>
+          <col width="30%">
+          <col width="20%">
+          <col width="25%">
+          <col width="10%">
+          <col>
+        </colgroup>
+        <thead>
+          <tr>
+            <th>文章标题</th>
+            <th>分类</th>
+            <th>发表时间</th>
+            <th>状态</th>
+            <th>操作</th>
+          </tr> 
+        </thead>
+        <tbody>
+          
+        </tbody>
+      </table>
+
+      <!-- 分页区域 -->
+      <div id="pagination"></div>
+    </div>
+  </div>
+ 
+  <!-- 定义一个模板 -->
+  <script type="text/html" id="tpl">
+    {{each data}}
+    <tr>
+      <td>{{$value.title}}</td>
+      <td>{{$value.cate_name}}</td>
+      <td>{{$value.pub_date | dateFormat}}</td>
+      <td>{{$value.state}}</td>
+      <td>
+        <button data-id="{{$value.Id}}" type="button" class="edit-btn layui-btn layui-btn-xs">编辑</button>
+        <button data-id="{{$value.Id}}" type="button" class="del-btn layui-btn layui-btn-xs layui-btn-danger">删除</button>
+      </td>
+    </tr>
+    {{/each}}
+  </script>
+
+  <!-- 引入时间插件 -->
+  <script src="../assets/lib/moment.js"></script>
+  <!-- 引入模板引擎 -->
+  <script src="../assets/lib/template-web.js"></script>
+  <!-- 引入 jquery 文件 -->
+  <script src="../assets/lib/jquery.js"></script>
+  <!-- 引入 layui 的 js 文件 -->
+  <script src="../assets/lib/layui/layui.all.js"></script>
+  <!-- 引入请求库 axios 的 js 文件 -->
+  <script src="../assets/lib/axios.js"></script>
+  <!-- 引入公共的请求设置文件 -->
+  <script src="../assets/js/commonAPI.js"></script>
+  <!-- 引入自己的文件 -->
+  <script src="../assets/js/article/list.js"></script>
+</body>
+</html>
